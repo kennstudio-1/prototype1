@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YNSVISUALS — Creative Media & Digital Solutions</title>
+  <meta name="description" content="YNSVISUALS — Content-first, performance-driven creative media & digital solutions." />
+
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.035);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --muted2:rgba(255,255,255,.52);
+      --stroke:rgba(255,255,255,.14);
+      --stroke2:rgba(255,255,255,.10);
+
+      
+      --silver1: rgba(255,255,255,.95);
+      --silver2: rgba(210,210,210,.65);
+      --silver3: rgba(255,255,255,.35);
+
+      --radius:22px;
+      --shadow: 0 18px 70px rgba(0,0,0,.45);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(255,255,255,.12), transparent 55%),
+        radial-gradient(1000px 800px at 90% 20%, rgba(180,180,180,.10), transparent 60%),
+        radial-gradient(800px 700px at 40% 110%, rgba(255,255,255,.08), transparent 55%),
+        linear-gradient(180deg, #07080c 0%, #0b0c10 40%, #07080c 100%);
+      overflow-x:hidden;
+    }
+
+    
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.22;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(1120px, 92vw); margin:0 auto; }
+
+   
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(11,12,16,.78), rgba(11,12,16,.40));
+      border-bottom:1px solid var(--stroke2);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:650;
+      font-size:12px;
+      color:rgba(255,255,255,.9);
+    }
+    .brand-dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--silver1), var(--silver2), var(--silver3));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.22), 0 10px 30px rgba(255,255,255,.08);
+    }
+    .nav-links{
+      display:flex; align-items:center; gap:18px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .nav-links a{
+      padding:10px 10px;
+      border-radius:12px;
+      transition: .25s ease;
+    }
+    .nav-links a:hover{
+      background: rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+    }
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      font-size:13px;
+      transition: .25s ease;
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+    .btn:active{ transform: translateY(0px); }
+    .btn-primary{
+      border-color: rgba(255,255,255,.22);
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.06));
+    }
+
+    
+    .hero{
+      padding:70px 0 30px;
+      position:relative;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .kicker .pulse{
+      width:8px; height:8px; border-radius:999px;
+      background: linear-gradient(135deg, var(--silver1), var(--silver2));
+      box-shadow: 0 0 0 0 rgba(255,255,255,.35);
+      animation: pulse 2.2s infinite;
+    }
+    @keyframes pulse{
+      0%{ box-shadow: 0 0 0 0 rgba(255,255,255,.28); }
+      70%{ box-shadow: 0 0 0 12px rgba(255,255,255,0); }
+      100%{ box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+
+    h1{
+      margin:16px 0 10px;
+      font-size: clamp(34px, 4.1vw, 56px);
+      line-height:1.02;
+      letter-spacing:-.02em;
+    }
+    .grad{
+      background: linear-gradient(120deg, var(--silver1), var(--silver2), rgba(255,255,255,.92));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.65;
+      max-width: 60ch;
+    }
+    .hero-actions{
+      margin-top:22px;
+      display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+    }
+    .mini{
+      font-size:12px; color:var(--muted2);
+      display:flex; align-items:center; gap:10px;
+    }
+    .mini span{ opacity:.9; }
+    .mini .sep{ width:4px; height:4px; border-radius:999px; background:rgba(255,255,255,.28); }
+
+    .hero-card{
+      border-radius: var(--radius);
+      border:1px solid var(--stroke2);
+      background:
+        radial-gradient(600px 240px at 20% 10%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:18px;
+      min-height: 320px;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(135deg, rgba(255,255,255,.16), transparent 45%, rgba(255,255,255,.10));
+      opacity:.55;
+      filter: blur(12px);
+      transform: translate3d(0,0,0);
+      pointer-events:none;
+    }
+    .reel{
+      position:relative;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(800px 320px at 10% 0%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      height: 100%;
+      overflow:hidden;
+    }
+    .reel-top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .dots{ display:flex; gap:7px; }
+    .dot{ width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.14); }
+    .dot:nth-child(1){ background:rgba(255,255,255,.18); }
+    .dot:nth-child(2){ background:rgba(255,255,255,.12); }
+    .dot:nth-child(3){ background:rgba(255,255,255,.10); }
+
+    .reel-body{
+      padding:14px;
+      height: calc(100% - 45px);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      justify-content:space-between;
+    }
+    .metric{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .tile{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:12px;
+    }
+    .tile .label{
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .tile .value{
+      margin-top:6px;
+      font-size:18px;
+      letter-spacing:-.02em;
+    }
+    .scanline{
+      height: 96px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.06) 2px, transparent 2px, transparent 10px);
+      position:relative;
+      overflow:hidden;
+    }
+    .scanline:after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+      width: 40%;
+      transform: translateX(-120%);
+      animation: sweep 3.2s infinite;
+      filter: blur(1px);
+      opacity:.55;
+    }
+    @keyframes sweep{
+      0%{ transform: translateX(-120%); }
+      55%{ transform: translateX(250%); }
+      100%{ transform: translateX(250%); }
+    }
+
+    
+    section{ padding:42px 0; }
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px;
+      margin-bottom:16px;
+    }
+    h2{
+      margin:0;
+      font-size: clamp(20px, 2.2vw, 28px);
+      letter-spacing:-.02em;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+      max-width: 62ch;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+    .card{
+      border-radius: var(--radius);
+      border:1px solid var(--stroke2);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      padding:18px;
+      box-shadow: 0 14px 55px rgba(0,0,0,.22);
+      position:relative;
+      overflow:hidden;
+      transform: translateY(0);
+      transition: .25s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    .card:before{
+      content:"";
+      position:absolute;
+      width: 220px; height: 220px;
+      right:-120px; top:-140px;
+      background: radial-gradient(circle, rgba(255,255,255,.16), transparent 60%);
+      opacity:.55;
+      pointer-events:none;
+    }
+    .tag{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--muted2);
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.035);
+    }
+    .card h3{
+      margin:12px 0 6px;
+      font-size:16px;
+      letter-spacing:-.01em;
+    }
+    .card ul{
+      margin:10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.75;
+    }
+
+    .chips{
+      display:flex; flex-wrap:wrap; gap:10px;
+      padding: 6px 0 0;
+    }
+    .chip{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size:13px;
+    }
+
+    
+    .cta{
+      padding:54px 0 70px;
+    }
+    .cta-box{
+      border-radius: calc(var(--radius) + 6px);
+      border:1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(900px 300px at 20% 20%, rgba(255,255,255,.12), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      padding:22px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .cta-box:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(120deg, rgba(255,255,255,.14), transparent 50%, rgba(255,255,255,.10));
+      opacity:.6;
+      filter: blur(14px);
+      pointer-events:none;
+    }
+    .cta-box h2{ margin:0 0 6px; }
+    .cta-box p{ margin:0; color:var(--muted); font-size:13px; line-height:1.65; }
+    .cta-actions{
+      display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap;
+    }
+
+    
+    footer{
+      padding:22px 0 34px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:var(--muted2);
+      font-size:12px;
+    }
+    .foot{
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    .foot a{ color:rgba(255,255,255,.68); }
+    .foot a:hover{ color:rgba(255,255,255,.92); }
+
+    
+    .reveal{
+      opacity:0; transform: translateY(14px);
+      transition: .65s ease;
+    }
+    .reveal.show{
+      opacity:1; transform: translateY(0);
+    }
+
+   
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .cta-box{ grid-template-columns: 1fr; }
+      .cta-actions{ justify-content:flex-start; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="YNSVISUALS Home">
+        <span class="brand-dot"></span>
+        <span>YNSVISUALS</span>
+      </a>
+
+      <div class="nav-links" aria-label="Navigation">
+        <a href="#services">Services</a>
+        <a href="#approach">Ansatz</a>
+        <a href="#for">Für wen</a>
+        <a href="#tools">Tools</a>
+      </div>
+
+      <div class="nav-cta">
+        <a class="btn" href="#contact">Angebot</a>
+        <a class="btn btn-primary" href="#contact">Kontakt</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top" class="container">
+    
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="reveal">
+          <div class="kicker">
+            <span class="pulse"></span>
+            Creative media & digital solutions
+          </div>
+
+          <h1>
+            <span class="grad">Content, der performt.</span><br/>
+            Modern. Clean. High-end.
+          </h1>
+
+          <p>
+            YNSVISUALS erstellt Inhalte, die nicht nur gut aussehen —
+            sondern Reichweite, Aufmerksamkeit und Wachstum erzeugen.
+            Optimiert für Plattformen. Entwickelt für Performance.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Projekt starten</a>
+            <a class="btn" href="#services">Services ansehen</a>
+            <div class="mini">
+              <span>Short-form</span><span class="sep"></span>
+              <span>Long-form</span><span class="sep"></span>
+              <span>Social-first</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card reveal" aria-label="Performance Panel (placeholder)">
+          <div class="reel">
+            <div class="reel-top">
+              <div class="dots" aria-hidden="true">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+              </div>
+              <div>Performance Snapshot</div>
+            </div>
+
+            <div class="reel-body">
+              <div class="metric">
+                <div class="tile">
+                  <div class="label">Hook</div>
+                  <div class="value">Optimiert</div>
+                </div>
+                <div class="tile">
+                  <div class="label">Watchtime</div>
+                  <div class="value">Maximiert</div>
+                </div>
+              </div>
+
+              <div class="scanline" aria-hidden="true"></div>
+
+              <div class="metric">
+                <div class="tile">
+                  <div class="label">Formate</div>
+                  <div class="value">Platform-ready</div>
+                </div>
+                <div class="tile">
+                  <div class="label">Turnaround</div>
+                  <div class="value">Fast</div>
+                </div>
+              </div>
+              <div style="color:rgba(255,255,255,.55); font-size:12px;">
+                * Platzhalter im Prototyp. Später kann hier ein Reel / Showreel-Video rein.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="services">
+      <div class="section-head reveal">
+        <div>
+          <h2>Services</h2>
+          <p class="sub">
+            Klar strukturiert, damit Kunden sofort verstehen: <b>Was wird geliefert</b> und <b>wofür ist es gut</b>.
+          </p>
+        </div>
+        <div class="tag">Content-first • Performance-driven</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card reveal">
+          <div class="tag">Video & Editing</div>
+          <h3>Cinematic Edits für jede Plattform</h3>
+          <ul>
+            <li>Short-form (TikTok / Reels / Shorts)</li>
+            <li>Long-form (YouTube, Brand Stories)</li>
+            <li>Untertitel, Captions & Motion Graphics</li>
+            <li>Color Grading, Transitions, Sound Design</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="tag">Social Media Growth</div>
+          <h3>Optimiert für Reichweite & Watchtime</h3>
+          <ul>
+            <li>Plattform-Optimierung & Content-Strategie</li>
+            <li>Trend-basierte und viral-inspirierte Videos</li>
+            <li>Hook-Optimierung (erste Sekunden zählen)</li>
+            <li>Watchtime-Optimierung für mehr Retention</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="tag">Creative Direction</div>
+          <h3>Ideen, Struktur und Storytelling</h3>
+          <ul>
+            <li>Content-Ideen & Videokonzepte</li>
+            <li>Skript-Impulse & Story-Strukturen</li>
+            <li>Shotlists & visueller Aufbau</li>
+            <li>Branding- & Visual Alignment</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="tag">Digital & Web Media</div>
+          <h3>Visuelle Assets, die klicken</h3>
+          <ul>
+            <li>Thumbnails & Social Media Grafiken</li>
+            <li>Website-Visuals & Landingpage Media</li>
+            <li>Ad Creatives & Promo Assets</li>
+            <li>Brand-Präsentationsmaterial</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="approach">
+      <div class="section-head reveal">
+        <div>
+          <h2>Ansatz</h2>
+          <p class="sub">
+            Minimaler Look. Maximale Wirkung. Der Fokus liegt auf <b>Performance</b> und <b>klarer Kommunikation</b>.
+          </p>
+        </div>
+        <div class="tag">Clean • Modern • Cinematic</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <div class="tag">01</div>
+          <h3>Strategie vor Schnitt</h3>
+          <ul>
+            <li>Zielgruppe & Plattform verstehen</li>
+            <li>Format & Hook definieren</li>
+            <li>Storyline klar strukturieren</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <div class="tag">02</div>
+          <h3>Design für Watchtime</h3>
+          <ul>
+            <li>Tempo, Rhythmus, Pattern Interrupts</li>
+            <li>Subtitles & Motion für Retention</li>
+            <li>Sound Design für „Feel“</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <div class="tag">03</div>
+          <h3>Platform-ready Delivery</h3>
+          <ul>
+            <li>Optimierte Aspect Ratios</li>
+            <li>High-res Exporte</li>
+            <li>Schnelle Lieferzeiten</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="for">
+      <div class="section-head reveal">
+        <div>
+          <h2>Für wen</h2>
+          <p class="sub">
+            Für alle, die Content nicht „nur posten“, sondern damit wachsen wollen.
+          </p>
+        </div>
+        <div class="tag">Brands • Creator • Business</div>
+      </div>
+
+      <div class="chips reveal" aria-label="Target audiences">
+        <div class="chip">Personal Brands</div>
+        <div class="chip">Creator & Influencer</div>
+        <div class="chip">Startups</div>
+        <div class="chip">Online-Brands</div>
+        <div class="chip">Lokale Unternehmen</div>
+      </div>
+    </section>
+
+    
+    <section id="tools">
+      <div class="section-head reveal">
+        <div>
+          <h2>Tools</h2>
+          <p class="sub">Professionelles Setup für Editing, Motion und Visuals.</p>
+        </div>
+        <div class="tag">Adobe + CapCut</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <div class="tag">Editing</div>
+          <h3>Premiere Pro • CapCut</h3>
+          <ul>
+            <li>Short-form & Long-form Workflows</li>
+            <li>Platform-Optimierung</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <div class="tag">Motion</div>
+          <h3>After Effects</h3>
+          <ul>
+            <li>Motion Graphics</li>
+            <li>Transitions & Visual Accents</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <div class="tag">Design</div>
+          <h3>Photoshop • Lightroom</h3>
+          <ul>
+            <li>Thumbnails & Social Visuals</li>
+            <li>Color Look & Brand Visuals</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="cta" id="contact">
+      <div class="cta-box reveal">
+        <div>
+          <h2>Bereit, dein Content-Level zu steigern?</h2>
+          <p>
+            Sag kurz, was du brauchst — Short-form, Long-form, Social Growth oder komplette Creative Direction.
+            Wir antworten schnell und klar.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="#" onclick="openContact(); return false;">Kontakt aufnehmen</a>
+          <a class="btn" href="#services">Services</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container foot">
+        <div>© <span id="year"></span> YNSVISUALS</div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="#" onclick="openContact(); return false;">E-Mail</a>
+          <a href="#" onclick="openContact(); return false;">Instagram</a>
+          <a href="#top">Nach oben</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const els = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el=>io.observe(el));
+
+
+    function openContact(){
+      alert("Kontakt (Prototyp)\n\nE-Mail: hello@ynsvisuals.com\nInstagram: @ynsvisuals\n\n(Заменишь на реальные контакты клиента)");
+    }
+  </script>
+</body>
+</html>
